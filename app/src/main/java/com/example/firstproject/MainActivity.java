@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
     Button delete_button;
 
     TextView result_text;
+    TextView operation_text;
 
     StringBuilder num = new StringBuilder();
+    StringBuilder operation = new StringBuilder();
     double operand = 0;
     double result = 0;
     char operator = ' ';
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         result_text = findViewById(R.id.display_result_text);
+        operation_text = findViewById(R.id.display_calculation_text);
 
         button_one = findViewById(R.id.button_one);
         button_two = findViewById(R.id.button_two);
@@ -101,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println(num);
                     operand = Double.parseDouble(String.valueOf(num));
-                    result_text.setText(String.valueOf(num));
+
+
+                    operation_text.setText("");
+                    operation.append(num);
+                    operation_text.setText(String.valueOf(operation));
                 }
             });
         }
@@ -156,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 is_first = true;
 
                 result_text.setText("");
+                operation_text.setText("");
             }
         });
     }
@@ -207,7 +215,8 @@ public class MainActivity extends AppCompatActivity {
         }
         is_first = false;
         num.setLength(0);
-        result_text.setText("");
+
+        operation.append(String.valueOf(operation));
     }
 
     private void calculateResult() {
